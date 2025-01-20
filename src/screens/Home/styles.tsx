@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {font, hp, spacing} from '../../styles/GlobalSizes';
 import {colors} from '../../theme/Colors';
 
@@ -65,6 +65,10 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
   },
+  mediumText: {
+    fontWeight: '500',
+    color: colors.black,
+  },
   bananasCell: {
     flex: 2,
     textAlign: 'center',
@@ -81,9 +85,12 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: colors.black,
   },
+  flatListContainer: {
+    marginBottom: Platform.OS === 'ios' ? hp(23) : hp(25),
+  },
   sortButton: {
     position: 'absolute',
-    bottom: 0,
+    bottom: Platform.OS === 'android' ? 15 : 0,
     alignSelf: 'center',
     backgroundColor: colors.white_200,
     width: '90%',

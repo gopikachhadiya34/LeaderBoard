@@ -14,14 +14,15 @@ const LeaderboardRender = ({item, index, searchQuery}: any) => {
           styles.cell,
           styles.nameCell,
           styles.border,
+          styles.mediumText,
           isHighlighted && styles.highlightText,
         ]}>
         {item.name}
       </Text>
-      <Text style={[styles.cell, styles.rankCell, styles.border]}>
+      <Text style={[styles.cell, styles.rankCell, styles.border, styles.mediumText]}>
         {item.rank || item.stars}
       </Text>
-      <Text style={[styles.cell, styles.bananasCell, styles.border]}>
+      <Text style={[styles.cell, styles.bananasCell, styles.border,styles.mediumText]}>
         {item.bananas}
       </Text>
     </View>

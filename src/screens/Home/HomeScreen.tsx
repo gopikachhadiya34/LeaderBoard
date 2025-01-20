@@ -2,12 +2,13 @@ import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {
   Alert,
   FlatList,
+  Keyboard,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {hp, spacing} from '../../styles/GlobalSizes';
+import {spacing} from '../../styles/GlobalSizes';
 import {colors} from '../../theme/Colors';
 import {UserData} from '../../constants/UserData';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -51,15 +52,17 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
   }, [dispatch, sortedUsers]);
 
   const handleSearch = () => {
+    Keyboard.dismiss();
     if (searchQuery.trim() === '') {
       resetLeaderboard();
       return;
     }
     // Check if searched user exists
     const searchedUser = sortedUsers.filter(user =>
-      user.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      user?.name.toLowerCase().includes(searchQuery.toLowerCase()),
     );
-    if (!searchedUser) {
+    console.log(searchedUser);
+    if (!searchedUser || searchedUser.length === 0) {
       Alert.alert(
         'This user name does not exist!',
         'Please specify an existing user name!',
@@ -69,7 +72,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
     // Get top 10 users
     const top10 = sortedUsers.slice(0, 10);
     // If the searched user is already in the top 10
-    if (top10.find(user => user.name === searchedUser[0].name)) {
+    if (top10.find(user => user?.name === searchedUser[0]?.name)) {
       setFilteredData(top10);
       return;
     }
@@ -157,11 +160,12 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
         </View>
         <View style={{marginHorizontal: spacing.md}}>
           <FlatList
+            keyboardShouldPersistTaps="handled"
             data={filteredData}
             keyExtractor={item => item.uid}
             onEndReachedThreshold={0.5}
             bounces={false}
-            style={{marginBottom: hp(23)}}
+            style={styles.flatListContainer}
             showsVerticalScrollIndicator={false}
             renderItem={({item, index}) => (
               <LeaderboardRender
