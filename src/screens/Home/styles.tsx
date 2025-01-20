@@ -135,6 +135,12 @@ const styles = StyleSheet.create({
     color: colors.red,
     fontWeight: '700',
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: spacing.small, // Adjust padding as needed
+  },
 });
 
 export default styles;
