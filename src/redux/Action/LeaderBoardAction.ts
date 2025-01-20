@@ -1,6 +1,9 @@
-import {LeaderboardEntry, SetLeaderboardAction} from './ActionType';
+import { LeaderboardEntry } from '../../screens/Home/utils';
+import {SetLeaderboardAction} from './ActionType';
 
-export const setLeaderboard = (leaderboard: LeaderboardEntry[]): SetLeaderboardAction => ({
-    type: 'SET_LEADERBOARD',
-    payload: leaderboard,
-  });
+export const setLeaderboard = (
+  leaderboard: LeaderboardEntry[],
+): SetLeaderboardAction => ({
+  type: 'SET_LEADERBOARD',
+  payload: leaderboard,
+});

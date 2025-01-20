@@ -14,7 +14,7 @@ const LeaderboardRender = ({item, index, searchQuery}: any) => {
           styles.cell,
           styles.nameCell,
           styles.border,
-          isHighlighted && {color: 'red'},
+          isHighlighted && styles.highlightText,
         ]}>
         {item.name}
       </Text>

@@ -6,5 +6,6 @@ export const colors = {
   gray_100 : '#6F767E',
   gray_200 : '#7F7F7F',
   orange : '#FFBC99',
-  purple : '#8A2BEA'
+  purple : '#8A2BEA',
+  red : '#DC143C',
 };

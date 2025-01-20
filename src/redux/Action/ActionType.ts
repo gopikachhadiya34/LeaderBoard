@@ -1,14 +1,6 @@
 // src/redux/types.ts
-export interface LeaderboardEntry{
-  name: string;
-  bananas: number;
-  rank: number;
-  uid?: string;
-  stars?: number;
-  subscribed?: boolean;
-  lastDayPlayed?: string;
-  longestStreak?: number;
-}
+
+import {LeaderboardEntry} from '../../screens/Home/utils';
 
 export interface LeaderboardState {
   leaderboard: LeaderboardEntry[];

@@ -124,6 +124,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     paddingTop: spacing.base,
   },
+  highlightText: {
+    color: colors.red,
+    fontWeight: '700',
+  },
 });
 
 export default styles;

@@ -1,4 +1,5 @@
-import {LeaderboardAction, LeaderboardEntry} from '../Action/ActionType';
+import { LeaderboardEntry } from '../../screens/Home/utils';
+import {LeaderboardAction} from '../Action/ActionType';
 
 const initialState: { leaderboard: LeaderboardEntry[] } = {
   leaderboard: [],

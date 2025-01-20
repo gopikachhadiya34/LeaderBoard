@@ -17,9 +17,9 @@ import Header from '../../components/Header';
 import styles from './styles';
 import {User} from './utils';
 import {useDispatch, useSelector} from 'react-redux';
-import { setLeaderboard } from '../../redux/Action/LeaderBoardAction';
-import { LeaderboardEntry } from '../../redux/Action/ActionType';
-
+import {setLeaderboard} from '../../redux/Action/LeaderBoardAction';
+import {LeaderboardAction} from '../../redux/Action/ActionType';
+import {Dispatch} from 'redux';
 
 type HomeScreenProps = {};
 
@@ -29,11 +29,13 @@ const allUsers: User[] = Object.values(UserData[0]).map(user => ({
 }));
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<Dispatch<LeaderboardAction>>();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filteredData, setFilteredData] = useState(allUsers);
-  const refRBSheet : any = useRef(null);
-  const leaderboard = useSelector((state: { leaderboard: LeaderboardEntry[] }) => state.leaderboard);
+  const refRBSheet: any = useRef(null);
+  const leaderboard = useSelector(
+    (state: {leaderboard: User[]}) => state.leaderboard,
+  );
 
   const sortedUsers = useMemo(
     () =>
@@ -89,6 +91,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
   };
 
   const handleSort = (criteria: 'name' | 'lowestRank') => {
+    setSearchQuery('');
     if (criteria === 'name') {
       const sortedByName = [...leaderboard].sort((a, b) =>
         a.name.localeCompare(b.name),
@@ -102,8 +105,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       );
       setFilteredData(sortedList);
     }
-    if(refRBSheet.current){
-
+    if (refRBSheet.current) {
       refRBSheet.current.close();
     }
   };
